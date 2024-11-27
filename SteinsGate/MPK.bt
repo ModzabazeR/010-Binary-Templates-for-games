@@ -1,0 +1,38 @@
+//------------------------------------------------
+//--- 010 Editor v14.0.1 Binary Template
+//
+//      File: MPK.bt
+//   Authors: Phachara Chirapakachote
+//   Version: 1.0
+//   Purpose: Parse MAGES GAME archive
+//  Category: Archive
+// File Mask: *.mpk
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+
+struct Header {
+    char magic[4];
+    byte padding[2];
+    short two;
+    uint64 fileCount <comment="Number of files in the archive">;
+};
+
+struct File {
+    int isCompressed <comment="1 if compressed, 0 if not">;
+    int index <comment="File index">;
+    uint64 position <format=hex, comment="Raw file data offset in the archive">;
+    uint64 size <comment="File size when in the archive">;
+    uint64 uncompressedSize <comment="Real file size">;
+    char fileName[224] <comment="File name">;
+    
+    local int pos = FTell();
+    FSeek(position);
+    byte fileData[size];
+    FSeek(pos);
+};
+
+Header header;
+byte padding[48];
+
+File file[header.fileCount]<optimize=false>;
