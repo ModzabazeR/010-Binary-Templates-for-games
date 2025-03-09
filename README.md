@@ -1,5 +1,7 @@
 # Game Binary Templates for 010 Editor
 
+> **Open Source Alternative Available**: If you're looking for an open source alternative, check out my [ImHex-Game-Patterns-Collection](https://github.com/ModzabazeR/ImHex-Game-Patterns-Collection) - A collection of game binary patterns for [ImHex](https://imhex.werwolv.net/), a free and open-source hex editor that serves as an alternative to 010 Editor templates.
+
 This repository contains a collection of binary templates (.bt files) for analyzing and editing video game binary files using [010 Editor](https://www.sweetscape.com/010editor/).
 
 ## What are .bt Templates?
@@ -57,6 +59,10 @@ When creating new templates, please:
 - Document the purpose of each structure
 - Test thoroughly with multiple files
 - Include the game name as a prefix in the filename
+
+## Related Projects
+
+- [ImHex-Game-Patterns-Collection](https://github.com/ModzabazeR/ImHex-Game-Patterns-Collection) - A collection of game binary patterns for [ImHex](https://imhex.werwolv.net/), an open-source hex editor. This repository serves as an open-source alternative to 010 Editor templates.
 
 ## Resources
 
