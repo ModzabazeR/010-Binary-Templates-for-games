@@ -29,11 +29,6 @@ This repository includes templates for the following games:
 4. Click **Add...** and navigate to the folder containing these templates
 5. Select the templates you want to install and click **Open**
 
-Alternatively, you can copy the templates to your 010 Editor templates directory:
-- Windows: `%APPDATA%\SweetScape\010 Editor\Templates`
-- macOS: `~/Library/Application Support/SweetScape/010 Editor/Templates`
-- Linux: `~/.config/SweetScape/010 Editor/Templates`
-
 ## Usage
 
 1. Open a binary file in 010 Editor
