@@ -17,7 +17,6 @@ These templates act as a map for interpreting raw binary data, making it possibl
 
 This repository includes templates for the following games:
 - [Bioforge](Bioforge/README.md)
-- [NieR Automata](NieRAutomata/README.md)
 - [Steins;Gate](SteinsGate/README.md)
 
 ## Installation

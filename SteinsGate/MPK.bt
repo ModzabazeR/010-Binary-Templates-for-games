@@ -8,7 +8,6 @@
 //  Category: Archive
 // File Mask: *.mpk
 //  ID Bytes: 
-//   History: 
 //------------------------------------------------
 
 struct Header {
