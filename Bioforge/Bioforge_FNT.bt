@@ -1,0 +1,78 @@
+//------------------------------------------------
+//--- 010 Editor v14.0.1 Binary Template
+//
+//      File: Bioforge FNT file
+//   Authors: Phachara Chirapakachote
+//   Version: 1.0
+//  Category: Font
+//      Note: Wrote along Tim Comport's video (https://www.youtube.com/watch?v=fKb_0BfKtsA) just to practice my 010 Editor and file analyzing skills.
+//------------------------------------------------
+
+struct OffsetAndItsCount {
+    uint32 offset<format=hex>;
+    uint16 count;
+};
+
+struct Header {
+    uint16 maxWidth;
+    uint16 maxHeight;
+    uint16 count;
+    OffsetAndItsCount offsets[count];
+};
+
+struct CharacterData {
+    char unk[2];
+    uint16 characterWidth;
+    uint16 characterHeight;
+    char unk2[4];
+    uint16 rowOffsets[characterHeight];
+    
+    struct CharacterRow {
+        byte skipCount;
+    
+        local uint pixelRead = skipCount;
+        local byte currentByte;
+        local byte nextByte;
+        while (true) {
+            if (pixelRead >= characterWidth) {
+                break;
+            }
+            struct PixelData {
+                byte pixelCount;
+                
+                if (!FEof()) {
+                    currentByte = ReadByte(FTell() - 1);
+                    nextByte = ReadByte();
+                    
+                    // FD = Font 0, 2, 4
+                    // E6 = Font 1
+                    // F7 = Font 3
+                    // F4 = Font 5, 6
+                    // 74 = Font 7, 8
+                    // A0 = Font 9
+                    // 9D = SMALL.FNT (My Template still gives an error)
+                    // 80 = TINYBLK.FNT
+                    // Not sure how to do this correctly, the pixel value isn't actually
+                    // not that important. It just different in each file.
+                    if ((currentByte != 0xFFFFFFE6 && nextByte == 0xFFFFFFE6) ||
+                        (currentByte != 0xFFFFFFFD && nextByte == 0xFFFFFFFD) ||
+                        (currentByte != 0xFFFFFFF7 && nextByte == 0xFFFFFFF7) ||
+                        (currentByte != 0xFFFFFFF4 && nextByte == 0xFFFFFFF4) ||
+                        (currentByte != 0x74 && nextByte == 0x74) ||
+                        (currentByte != 0xFFFFFFA0 && nextByte == 0xFFFFFFA0) ||
+                        (currentByte != 0xFFFFFF9D && nextByte == 0xFFFFFF9D) ||
+                        (currentByte != 0xFFFFFF80 && nextByte == 0xFFFFFF80)) {
+                        byte pixels[pixelCount];
+                    }
+                }
+                
+                pixelRead += pixelCount;
+            } pixelData;
+        }
+        
+    } rows[characterHeight]<optimize=false>;
+};
+
+
+Header header;
+CharacterData characterData[header.count]<optimize=false>;
